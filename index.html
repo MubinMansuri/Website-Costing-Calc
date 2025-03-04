@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Multi-Step Website Questionnaire</title>
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons (optional for visual appeal) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Left column: Multi-step form (≈70%) -->
+      <div class="col-lg-8 mb-4">
+        <form id="multiStepForm">
+          <!-- Progress indicator -->
+          <div id="progressBar" class="mb-4">
+            <div class="progress">
+              <div id="progressIndicator" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          
+          <!-- SECTION 1: Website Overview (Questions 1-5) -->
+          <div class="form-step active" data-step="1">
+            <h4>Website Overview</h4>
+            <!-- Q1: What type of website do you need? -->
+            <div class="mb-3">
+              <label class="form-label">1. What type of website do you need?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="websiteType" value="Business" id="websiteType1" checked>
+                  <label class="form-check-label" for="websiteType1">Business website</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="websiteType" value="Ecommerce" id="websiteType2">
+                  <label class="form-check-label" for="websiteType2">Ecommerce website</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="websiteType" value="Blog" id="websiteType3">
+                  <label class="form-check-label" for="websiteType3">Blog/Portfolio</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="websiteType" value="WebApp" id="websiteType4">
+                  <label class="form-check-label" for="websiteType4">Web Application</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q2: How many pages do you plan to have? -->
+            <div class="mb-3">
+              <label class="form-label">2. How many pages do you plan to have?</label>
+              <select class="form-select" name="pages">
+                <option value="1-5">1–5 pages</option>
+                <option value="6-10" selected>6–10 pages</option>
+                <option value="11-20">11–20 pages</option>
+                <option value="20+">20+ pages</option>
+              </select>
+            </div>
+            <!-- Q3: What level of design customization do you require? -->
+            <div class="mb-3">
+              <label class="form-label">3. What level of design customization do you require?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="designCustom" value="Template" id="designCustom1">
+                  <label class="form-check-label" for="designCustom1">Template-based design</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="designCustom" value="Light">
+                  <label class="form-check-label">Light customization</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="designCustom" value="Custom" id="designCustom3" checked>
+                  <label class="form-check-label" for="designCustom3">Fully custom design</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q4: Do you need e-commerce functionality? -->
+            <div class="mb-3">
+              <label class="form-label">4. Do you need e-commerce functionality?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="ecommerce" value="No" id="ecommerce1">
+                  <label class="form-check-label" for="ecommerce1">No</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="ecommerce" value="Basic" id="ecommerce2">
+                  <label class="form-check-label" for="ecommerce2">Basic</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="ecommerce" value="Advanced" id="ecommerce3" checked>
+                  <label class="form-check-label" for="ecommerce3">Advanced (with inventory management)</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q5: Which additional features do you want? -->
+            <div class="mb-3">
+              <label class="form-label">5. Which additional features do you want?</label>
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="features" value="ContactForms" id="feature1">
+                  <label class="form-check-label" for="feature1">Contact forms</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="features" value="LiveChat" id="feature2">
+                  <label class="form-check-label" for="feature2">Live chat</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="features" value="Booking" id="feature3">
+                  <label class="form-check-label" for="feature3">Booking system</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="features" value="SEO" id="feature4">
+                  <label class="form-check-label" for="feature4">SEO tools</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="button" class="btn btn-primary next-btn">Next <i class="bi bi-arrow-right"></i></button>
+            </div>
+          </div>
+          
+          <!-- SECTION 2: Technical & Management (Questions 6-11) -->
+          <div class="form-step" data-step="2">
+            <h4>Technical &amp; Management</h4>
+            <!-- Q6: Which CMS do you prefer? -->
+            <div class="mb-3">
+              <label class="form-label">6. Which content management system (CMS) do you prefer?</label>
+              <select class="form-select" name="cms">
+                <option value="WordPress" selected>WordPress</option>
+                <option value="Joomla">Joomla/Drupal</option>
+                <option value="Custom">Custom CMS</option>
+                <option value="None">None</option>
+              </select>
+            </div>
+            <!-- Q7: Mobile responsiveness -->
+            <div class="mb-3">
+              <label class="form-label">7. Do you require mobile responsiveness?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="responsive" value="Essential" id="responsive1" checked>
+                  <label class="form-check-label" for="responsive1">Essential</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="responsive" value="Optional">
+                  <label class="form-check-label">Optional</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="responsive" value="NotRequired">
+                  <label class="form-check-label">Not required</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q8: Third-party integrations -->
+            <div class="mb-3">
+              <label class="form-label">8. Do you need integration with third-party services?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="integration" value="None" id="integration1">
+                  <label class="form-check-label" for="integration1">None</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="integration" value="Few">
+                  <label class="form-check-label">One or two integrations</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="integration" value="Multiple" id="integration3" checked>
+                  <label class="form-check-label" for="integration3">Multiple integrations</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q9: Estimated budget (Not used in cost calculation) -->
+            <div class="mb-3">
+              <label class="form-label">9. What is your estimated budget for the project?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="budget" value="Under1000" id="budget1">
+                  <label class="form-check-label" for="budget1">Under $1,000</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="budget" value="1000-5000">
+                  <label class="form-check-label">$1,000–$5,000</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="budget" value="5000-10000" id="budget3" checked>
+                  <label class="form-check-label" for="budget3">$5,000–$10,000</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="budget" value="Over10000">
+                  <label class="form-check-label">Over $10,000</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q10: Desired timeline (Not used in cost calculation) -->
+            <div class="mb-3">
+              <label class="form-label">10. What is your desired timeline?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="timeline" value="Within1Month" id="timeline1">
+                  <label class="form-check-label" for="timeline1">Within 1 month</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="timeline" value="1-3Months" id="timeline2" checked>
+                  <label class="form-check-label" for="timeline2">1–3 months</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="timeline" value="3-6Months">
+                  <label class="form-check-label">3–6 months</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="timeline" value="Flexible">
+                  <label class="form-check-label">Flexible</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q11: Additional services -->
+            <div class="mb-3">
+              <label class="form-label">11. Do you require additional services?</label>
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="services" value="Hosting" id="service1">
+                  <label class="form-check-label" for="service1">Hosting</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="services" value="Maintenance" id="service2">
+                  <label class="form-check-label" for="service2">Ongoing maintenance</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="services" value="ContentCreation" id="service3">
+                  <label class="form-check-label" for="service3">Content creation</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="services" value="Photography" id="service4">
+                  <label class="form-check-label" for="service4">Photography</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" name="services" value="VideoProduction" id="service5">
+                  <label class="form-check-label" for="service5">Video production</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary prev-btn"><i class="bi bi-arrow-left"></i> Previous</button>
+              <button type="button" class="btn btn-primary next-btn">Next <i class="bi bi-arrow-right"></i></button>
+            </div>
+          </div>
+          
+          <!-- SECTION 3: Advanced Options (Questions 12-19) -->
+          <div class="form-step" data-step="3">
+            <h4>Advanced Options</h4>
+            <!-- Q12: SEO & Analytics setup -->
+            <div class="mb-3">
+              <label class="form-label">12. Do you need SEO and analytics setup?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="seoSetup" value="Basic" id="seoSetup1">
+                  <label class="form-check-label" for="seoSetup1">Basic setup</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="seoSetup" value="Advanced" id="seoSetup2">
+                  <label class="form-check-label" for="seoSetup2">Advanced setup</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="seoSetup" value="None" checked>
+                  <label class="form-check-label">Not needed</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q13: Interactivity / Custom Features -->
+            <div class="mb-3">
+              <label class="form-label">13. What level of interactivity or custom features do you require?</label>
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="interactivity" value="Static" id="interactivity1" checked>
+                  <label class="form-check-label" for="interactivity1">Static content</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="interactivity" value="Light">
+                  <label class="form-check-label">Light interactivity (forms, chat)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="interactivity" value="Advanced" id="interactivity3">
+                  <label class="form-check-label" for="interactivity3">Advanced interactivity (custom animations, dynamic pages)</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q14: Expected monthly traffic -->
+            <div class="mb-3">
+              <label class="form-label">14. What is your expected monthly traffic?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="traffic" value="Under1000" id="traffic1" checked>
+                  <label class="form-check-label" for="traffic1">Under 1,000 visitors</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="traffic" value="1000-5000" id="traffic2">
+                  <label class="form-check-label" for="traffic2">1,000–5,000 visitors</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="traffic" value="5000-10000" id="traffic3">
+                  <label class="form-check-label" for="traffic3">5,000–10,000 visitors</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="traffic" value="Over10000" id="traffic4">
+                  <label class="form-check-label" for="traffic4">Over 10,000 visitors</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q15: Ongoing support post-launch -->
+            <div class="mb-3">
+              <label class="form-label">15. Do you require ongoing support post-launch?</label>
+              <div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="support" value="No" id="support1">
+                  <label class="form-check-label" for="support1">No support</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="support" value="Basic">
+                  <label class="form-check-label">Basic support (occasional updates)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="support" value="Full" id="support3" checked>
+                  <label class="form-check-label" for="support3">Full maintenance &amp; support package</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q16: Existing branding materials -->
+            <div class="mb-3">
+              <label class="form-label">16. Do you have existing branding materials (e.g., logo, color scheme)?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="branding" value="Yes" id="branding1" checked>
+                  <label class="form-check-label" for="branding1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="branding" value="No">
+                  <label class="form-check-label">No</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q17: Target audience (Text input, no cost calculation) -->
+            <div class="mb-3">
+              <label class="form-label">17. Who is your target audience?</label>
+              <input type="text" class="form-control" name="audience" placeholder="E.g., General consumers" value="General consumers">
+            </div>
+            <!-- Q18: Multilingual support -->
+            <div class="mb-3">
+              <label class="form-label">18. Do you need multilingual support?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="multilingual" value="Yes" id="multilingual1">
+                  <label class="form-check-label" for="multilingual1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="multilingual" value="No" id="multilingual2" checked>
+                  <label class="form-check-label" for="multilingual2">No</label>
+                </div>
+              </div>
+            </div>
+            <!-- Q19: Will you provide content? -->
+            <div class="mb-3">
+              <label class="form-label">19. Will you provide the content for the website?</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contentProvided" value="Yes" id="contentProvided1" checked>
+                  <label class="form-check-label" for="contentProvided1">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="contentProvided" value="No">
+                  <label class="form-check-label">No</label>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-secondary prev-btn"><i class="bi bi-arrow-left"></i> Previous</button>
+              <button type="submit" class="btn btn-success">Submit <i class="bi bi-check"></i></button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Right column: Cost breakdown (≈30%) -->
+      <div class="col-lg-4">
+        <div id="costBreakdownContainer" class="sticky-top p-3 border rounded">
+          <h5 class="mb-3">Cost Breakdown</h5>
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Website Type
+              <span id="costWebsiteType">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Pages
+              <span id="costPages">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Design
+              <span id="costDesign">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              E-commerce
+              <span id="costEcommerce">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Additional Features
+              <span id="costFeatures">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              CMS
+              <span id="costCMS">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Mobile Responsiveness
+              <span id="costResponsive">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Third-Party Integration
+              <span id="costIntegration">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Additional Services
+              <span id="costServices">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              SEO & Analytics Setup
+              <span id="costSEO">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Interactivity / Custom Features
+              <span id="costInteractivity">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Monthly Traffic
+              <span id="costTraffic">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Ongoing Support
+              <span id="costSupport">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Branding Materials
+              <span id="costBranding">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Multilingual Support
+              <span id="costMultilingual">$0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              Content Provided
+              <span id="costContent">$0</span>
+            </li>
+          </ul>
+          <hr>
+          <h6 class="d-flex justify-content-between">
+            Total
+            <span id="totalCost">$0</span>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper (for Bootstrap JS components if needed) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script src="main.js"></script>
+</body>
+</html>

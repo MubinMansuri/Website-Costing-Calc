@@ -1,0 +1,41 @@
+/* Basic styles for the multi-step form and cost breakdown */
+
+/* Ensure only the active step is visible */
+.form-step {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+  }
+  .form-step.active {
+    display: block;
+  }
+  
+  /* Fade-in animation for smooth transitions */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Styling for navigation buttons */
+  .btn {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .btn:hover {
+    transform: scale(1.03);
+  }
+  
+  /* Sticky cost breakdown container */
+  #costBreakdownContainer {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  /* Progress bar styling */
+  #progressBar .progress {
+    height: 8px;
+    border-radius: 4px;
+  }
+  #progressBar .progress-bar {
+    background-color: #0d6efd;
+    transition: width 0.4s ease;
+  }
+  
